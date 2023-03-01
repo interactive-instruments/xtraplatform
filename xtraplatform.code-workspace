@@ -1,21 +1,45 @@
 {
   "folders": [
     {
+      "name": "xtraplatform",
       "path": "."
-    }
+    },
+    {
+      "name": "@xtraplatform/core",
+      "path": "xtraplatform-core/xtraplatform-manager/src/main/javascript/core"
+    },
+    {
+      "name": "@xtraplatform/dashboard",
+      "path": "xtraplatform-core/xtraplatform-dashboard/src/main/javascript"
+    },
+    {
+      "name": "@xtraplatform/manager",
+      "path": "xtraplatform-core/xtraplatform-manager/src/main/javascript/manager"
+    },
+    {
+      "name": "@xtraplatform/services",
+      "path": "xtraplatform-core/xtraplatform-services/src/main/javascript"
+    },
   ],
   "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
     "files.exclude": {
       "**/.idea": true,
       "**/.pnp.js": true,
       "**/.vscode": true,
       "**/.yarn": true,
       "**/*.gradle": true,
+      "**/*.java": true,
+      "**/*.groovy": true,
       "**/*.iml": true,
       "**/build": true,
       "**/gradle*": true,
       "**/out": true,
       "**/src/main/java": true,
+      "**/src/main/test": true,
       "**/yarn.lock": true
     }
   }

@@ -2,6 +2,7 @@
     "name": "root",
     "private": true,
     "workspaces": [
+        "xtraplatform-core/xtraplatform-dashboard/src/main/javascript",
         "xtraplatform-core/xtraplatform-manager/src/main/javascript/**",
         "xtraplatform-core/xtraplatform-services/src/main/javascript",
         "xtraplatform-build-tools/scaffolding/src/main/javascript/**"
@@ -36,7 +37,7 @@
         "grommet-icons": "^4",
         "mocha": "^8",
         "neutrino": "^9.5.0",
-        "prettier": "^2.4.1",
+        "prettier": "^2.8.4",
         "prop-types": "^15",
         "react": "^16",
         "react-dom": "^16",
