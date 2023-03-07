@@ -1,12 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Moon, Sun } from "grommet-icons";
+import services from "./Tests/services";
+import healthcheck from "./Tests/healthcheck";
+import Sidebar from "./Tests/Sidebar";
+import Tile from "./Tests/Tile";
+
 import {
   Box,
   Button,
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Grid,
   grommet,
   Grommet,
@@ -14,7 +18,6 @@ import {
   Heading,
   Page,
   PageContent,
-  PageHeader,
   Paragraph,
   ResponsiveContext,
   Text,
@@ -43,44 +46,94 @@ const AppBar = (props) => (
   />
 );
 
-const CardTemplate = ({ title }) => {
+const CardTemplate = ({ title, id, status }) => {
   const size = useContext(ResponsiveContext);
+  const selectedProvider = Object.keys(healthcheck).find(key =>
+    key.includes(id)
+  );
+  const art =  selectedProvider ? selectedProvider.substring(selectedProvider.lastIndexOf(".") + 1) : "";
+  const healthy = healthcheck[selectedProvider]?.healthy;
+    
+ 
+
   return (
-    <Card>
-      <CardHeader pad="medium">
+    
+    <Box fill='vertical' overflow={{ vertical: 'auto' }}>
+      <Box pad='none' background='content' flex={false}>
         <Heading level={2} margin="none">
           {title}
-        </Heading>
-      </CardHeader>
-      <CardBody pad="medium">
+        </Heading>   
         <Paragraph maxLines={size === "small" ? 3 : undefined}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-          porttitor non nulla ac vehicula. Aliquam erat volutpat. Mauris auctor
-          faucibus est at mattis. Aliquam a enim ac nisi aliquam consectetur et
-          ac velit. Mauris ut imperdiet libero.
+          Art des Checks: {art.replace(/([a-z])([A-Z])/g, "$1 $2")} <br></br>
+          Status: {status} <br></br>
+          Healthy: {healthy?.toString().charAt(0).toUpperCase() + healthy?.toString().slice(1)}
         </Paragraph>
-      </CardBody>
-      <CardFooter pad="medium" background="background-contrast">
-        Footer
-      </CardFooter>
-    </Card>
+      </Box>
+      </Box> /*
+      <Box fill='vertical' overflow={{ vertical: 'auto' }}>
+      <Box pad='none' background='content' flex={false}>
+        <Heading level={2} margin="none">
+          {title}
+        </Heading>   
+        <Tile
+              align='start'
+            direction='column'
+            basis={'1/3'}
+            fill={ false}
+            onClick={() => history.push({ pathname: `${route}/${id}`, search: location.search })}
+            selected={true}
+            focusIndicator={false}
+            background='background-front'
+            hoverStyle='border'
+            hoverColorIndex='accent-1'
+            hoverBorderSize='large'
+            pad='none'>
+              <Text
+              healthy
+              />
+        </Tile>
+      </Box>
+      </Box> */
   );
-};
+}; 
 
 const App = () => {
   const [dark, setDark] = useState(false);
 
+  /*
   useEffect(() => {
-    fetch("/entities")
-        //.then((response) => response.json())
-        .then((data) => console.log(data));
+    fetch(healthcheck)
+    .then((response) => {
+      console.log(response.status);
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((error) => console.log(error));
+  
   }, [])
+
+  useEffect(() => {
+    fetch(services)
+    .then((response) => {
+      console.log(response.status);
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((error) => console.log(error));
+  
+  }, [])
+
+  */
 
   return (
     <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
       <Page>
         <AppBar>
-          <Text size="large">My App</Text>
+          <Text size="large">Checks</Text>
           <Button
             a11yTitle={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             icon={dark ? <Moon /> : <Sun />}
@@ -99,12 +152,15 @@ const App = () => {
             }}
           />
         </AppBar>
-        <PageContent>
-          <PageHeader title="Welcome to Grommet!" />
-          <Grid columns="medium" gap="large" pad={{ bottom: "large" }}>
-            <CardTemplate title={"Card 1"} />
-            <CardTemplate title={"Card 2"} />
-            <CardTemplate title={"Card 3"} />
+        <PageContent>{/*
+        <Sidebar isLayer={true} onClose={() => console.log("closed")} hideBorder={true} children={"Hallo"} /> */}
+        <Grid columns="medium" gap="large" pad={{ bottom: "large" }}>
+          {services.providers.map((provider) => (
+  <CardTemplate title={provider.id.charAt(0).toUpperCase() + provider.id.slice(1)} 
+                id={provider.id} 
+                status={provider.status.charAt(0).toUpperCase() + provider.status.substring(1).toLowerCase()}
+                />
+))}          
           </Grid>
         </PageContent>
       </Page>
