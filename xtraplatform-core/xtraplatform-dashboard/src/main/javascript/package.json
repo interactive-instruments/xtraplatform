@@ -1,41 +1,43 @@
 {
-  "name": "@xtraplatform/dashboard",
-  "version": "1.0.0",
-  "author": "interactive instruments GmbH",
-  "license": "MPL-2.0",
-  "main": "index.js",
-  "private": true,
-  "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
-    "test": "mocha",
-    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
-  },
-  "dependencies": {
-    "grommet": "^2.30.0",
-    "grommet-icons": "^4.8.0",
-    "prop-types": "^15",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-is": "^18",
-    "react-router-dom": "^6.8.2",
-    "styled-components": "^5.3.6"
-  },
-  "devDependencies": {
-    "@neutrinojs/airbnb": "^9.3.0",
-    "@neutrinojs/mocha": "^9.3.0",
-    "@neutrinojs/react": "^9.3.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "@xtraplatform/neutrino": "^2.0.0",
-    "eslint": "^7",
-    "eslint-plugin-babel": "*",
-    "mocha": "^8",
-    "neutrino": "^9.3.0",
-    "pnp-webpack-plugin": "^1.6.4",
-    "prettier": "^2.8.4",
-    "react-refresh": "^0.9.0",
-    "webpack": "^4",
-    "webpack-cli": "^3",
-    "webpack-dev-server": "^3"
-  }
+    "name": "@xtraplatform/dashboard",
+    "version": "1.0.0",
+    "author": "interactive instruments GmbH",
+    "license": "MPL-2.0",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "start": "webpack-dev-server --mode development",
+        "build": "webpack --mode production",
+        "test": "mocha",
+        "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
+    },
+    "dependencies": {
+        "@xtraplatform/core": "^2.0.0",
+        "grommet": "^2.30.0",
+        "grommet-icons": "^4.8.0",
+        "prop-types": "^15",
+        "react": "^18",
+        "react-dom": "^18",
+        "react-i18next": "^11.8.5",
+        "react-is": "^18",
+        "react-router-dom": "^6.9.0",
+        "styled-components": "^5.3.6"
+    },
+    "devDependencies": {
+        "@neutrinojs/airbnb": "^9.3.0",
+        "@neutrinojs/mocha": "^9.3.0",
+        "@neutrinojs/react": "^9.3.0",
+        "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+        "@xtraplatform/neutrino": "^2.0.0",
+        "eslint": "^7",
+        "eslint-plugin-babel": "*",
+        "mocha": "^8",
+        "neutrino": "^9.3.0",
+        "pnp-webpack-plugin": "^1.6.4",
+        "prettier": "^2.8.4",
+        "react-refresh": "^0.9.0",
+        "webpack": "^4",
+        "webpack-cli": "^3",
+        "webpack-dev-server": "^3"
+    }
 }
