@@ -3,8 +3,8 @@ import Details from './Tests/Details';
 import { Moon, Sun } from 'grommet-icons';
 import services from './Tests/services';
 import healthcheck from './Tests/healthcheck';
-import Sidebar from './Tests/Sidebar';
-import { TileGrid } from '@xtraplatform/core';
+// import Sidebar from './Tests/Sidebar';
+import { TileGrid, Sidebar } from '@xtraplatform/core';
 import  { Tile }  from './Tests/Tile';
 
 import {
@@ -52,6 +52,7 @@ const AppBar = (props) => (
 );
 
 const App = () => {
+    const [currentID, setCurrentID] = useState(null);
     const [dark, setDark] = useState(false);
 
     /*
@@ -88,7 +89,7 @@ const App = () => {
         {(size) => {
             const isSmall =  size === 'small';
 
-            return (
+           if(currentID === null){ return (
         <Grommet theme={theme} full themeMode={dark ? 'dark' : 'light'}>
             <Page>
                 <AppBar>
@@ -110,9 +111,8 @@ const App = () => {
                         }}
                     />
                 </AppBar>
+                <Sidebar isLayer={false} children={"Hallo"} />
                 <PageContent>
-                    {/*
-        <Sidebar isLayer={true} onClose={() => console.log("closed")} hideBorder={true} children={"Hallo"} /> */}
                     <Grid columns='medium' gap='large' pad={{ bottom: 'large' }}>
                         {services.providers.map((provider) => (
                                         <Box fill='vertical' overflow={{ vertical: 'auto' }}>
@@ -126,8 +126,9 @@ const App = () => {
                                     provider.status.charAt(0).toUpperCase() +
                                     provider.status.substring(1).toLowerCase()
                                 }
-                             
-                                        key={provider.id}
+                                        setCurrentID={setCurrentID}
+                                        currentID={currentID}
+                                        id={provider.id.charAt(0).toUpperCase() + provider.id.slice(1)}
                                         isCompact={isSmall}
                                      
                             /> 
@@ -140,10 +141,13 @@ const App = () => {
                 </PageContent>
             </Page>
         </Grommet>
-                   );
-                }}
-            </ResponsiveContext.Consumer>
         );
+    } else {
+      return <Details currentID={currentID}/>;
+    }
+  }}
+</ResponsiveContext.Consumer>
+);
 };
 
 export default App;

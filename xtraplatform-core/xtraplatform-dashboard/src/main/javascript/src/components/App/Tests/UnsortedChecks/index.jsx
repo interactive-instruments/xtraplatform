@@ -51,21 +51,20 @@ const AppBar = (props) => (
     />
 );
 
-const Details = (currentID) => {
+const Details = () => {
     const [dark, setDark] = useState(false);
-    const lowercasedID = currentID.currentID.toLowerCase();
-    const selectedCheck = Object.keys(healthcheck).find((key) => key.includes(lowercasedID));
-    const size = useContext(ResponsiveContext);
-    const art = selectedCheck
-        ? selectedCheck.substring(selectedCheck.lastIndexOf('.') + 1)
-        : '';
-    const healthy = healthcheck[selectedCheck]?.healthy;
 
+    const size = useContext(ResponsiveContext);
+    const providers = services.providers.map((provider) => {return provider.id});
+    const unsortedChecks = Object.keys(healthcheck).filter((key) => {
+        return !providers.some((provider) => key.includes(provider));
+      }).map((key) => key.substring(0, 10)); 
+  
     return (
         <Grommet theme={theme} full themeMode={dark ? 'dark' : 'light'}>
-            <Page> 
+            <Page>
                 <AppBar>
-                    <Text size='large'>{currentID !== null && currentID.currentID}</Text>
+                    <Text size='large'>Other Checks</Text>
                     <Button
                         a11yTitle={dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                         icon={dark ? <Moon /> : <Sun />}
@@ -87,21 +86,20 @@ const Details = (currentID) => {
                 <Grid columns='medium' gap='large' pad={{ bottom: 'large' }}>
                 <Box fill='vertical' overflow={{ vertical: 'auto' }}>
                 <Box pad='none' background='content' flex={false}>
-                    <TileGrid compact='small'> 
-                   
+       {unsortedChecks.map((check) => (
+          <Box fill='vertical' overflow={{ vertical: 'auto' }}>
+<Box pad='none' background='content' flex={false}>
+<TileGrid compact='small'> 
     <Tile
-        title=  {art ? art.replace(/([a-z])([A-Z])/g, '$1 $2') + ': ' : "No pending Checks"} 
-       
-        status={
-           healthy
-        }
-     
-                key={currentID !== null && currentID.currentID}
-                isCompact={true}
-             
-    /> 
-
-    </TileGrid>
+    title=  {check.charAt(0).toUpperCase() + check.slice(1)}    
+    status={healthcheck[check]?.healthy}
+    key={check}
+    isCompact={true}            
+/> 
+</TileGrid>
+</Box>
+</Box>
+       ))}         
     </Box>
     </Box>
 </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Text, Heading } from 'grommet';
@@ -7,12 +7,13 @@ import { Tile as Coretile, StatusIcon, TaskProgress } from '@xtraplatform/core';
 const getStatusIconType = status => {
     switch (status) {
         case "Active":
-            case "true":      
+            case true:      
         case "Reloading":              
             return "ok"
         case "Disabled":            
             return "disabled"
-        case "Defective" || "false":            
+        case "Defective":
+            case false:            
             return "critical"
         case "Loading":           
             return "transit"    
@@ -24,11 +25,12 @@ const getStatusIconType = status => {
 const getStatusText = status => {
     switch (status) {
         case "Active":
-            case "true":         
+            case true:         
             return "Online"
         case "Disabled":            
             return "Offline"
-        case "Defective" || "false":            
+        case "Defective":
+            case false:            
             return "Defective"
         case "Loading":         
             return "Initializing"
@@ -46,6 +48,9 @@ export const Tile = ({
     label,
     enabled,
     status,
+    id,
+    currentID,
+    setCurrentID,
     message,
     progress,
     hasProgress,
@@ -65,14 +70,17 @@ export const Tile = ({
         />
     );
 
-    console.log(status);
     return (
         <Coretile
             align='start'
             direction='column'
             basis='auto'
-            fill="horizontal"
-            onClick={() => console.log("Check")}
+            fill="horizontal" 
+            onClick={() => {
+                if (currentID === null) {
+                  setCurrentID(id);
+                }
+              }}              
             selected={false}
             focusIndicator={false}
             background='background-front'
