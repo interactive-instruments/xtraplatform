@@ -54,13 +54,8 @@ const AppBar = (props) => (
 const Details = (currentID) => {
     const [dark, setDark] = useState(false);
     const lowercasedID = currentID.currentID.toLowerCase();
-    const selectedCheck = Object.keys(healthcheck).find((key) => key.includes(lowercasedID));
-    const size = useContext(ResponsiveContext);
-    const art = selectedCheck
-        ? selectedCheck.substring(selectedCheck.lastIndexOf('.') + 1)
-        : '';
-    const healthy = healthcheck[selectedCheck]?.healthy;
-
+    const selectedCheck = Object.keys(healthcheck).filter((key) => key.includes(lowercasedID));
+console.log(selectedCheck);
     return (
         <Grommet theme={theme} full themeMode={dark ? 'dark' : 'light'}>
             <Page> 
@@ -85,15 +80,17 @@ const Details = (currentID) => {
                 </AppBar>
                 <PageContent>
                 <Grid columns='medium' gap='large' pad={{ bottom: 'large' }}>
+                {selectedCheck && selectedCheck.length > 0 ? ( 
+                selectedCheck.map((check) => (
                 <Box fill='vertical' overflow={{ vertical: 'auto' }}>
                 <Box pad='none' background='content' flex={false}>
                     <TileGrid compact='small'> 
                    
     <Tile
-        title=  {art ? art.replace(/([a-z])([A-Z])/g, '$1 $2') + ': ' : "No pending Checks"} 
+        title=  {check ? check.substring(check.lastIndexOf('.') + 1).replace(/([a-z])([A-Z])/g, '$1 $2') + ': ' : "No pending Checks"} 
        
         status={
-           healthy
+            healthcheck[check]?.healthy
         }
      
                 key={currentID !== null && currentID.currentID}
@@ -104,6 +101,25 @@ const Details = (currentID) => {
     </TileGrid>
     </Box>
     </Box>
+                ))) : 
+<Box fill='vertical' overflow={{ vertical: 'auto' }}>
+                <Box pad='none' background='content' flex={false}>
+                    <TileGrid compact='small'> 
+                   
+    <Tile
+        title=  {"No pending Checks"}
+       
+       
+     
+                key={currentID !== null && currentID.currentID}
+                isCompact={true}
+             
+    /> 
+
+    </TileGrid>
+    </Box>
+    </Box>                
+                }
 </Grid>
             </PageContent>
             </Page>
