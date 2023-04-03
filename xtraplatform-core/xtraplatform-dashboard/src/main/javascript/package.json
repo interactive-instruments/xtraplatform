@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "author": "interactive instruments GmbH",
     "license": "MPL-2.0",
-    "main": "index.js",
-    "private": true,
+    "module": "src/index.js",
+    "sideEffects": false,
     "scripts": {
         "start": "webpack-dev-server --mode development",
         "build": "webpack --mode production",
@@ -12,7 +12,7 @@
         "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
     },
     "dependencies": {
-        "@xtraplatform/core": "^2.0.0",
+        "@xtraplatform/core": "workspace:*",
         "grommet": "^2.30.0",
         "grommet-icons": "^4.8.0",
         "prop-types": "^15",
@@ -20,7 +20,7 @@
         "react-dom": "^18",
         "react-i18next": "^11.8.5",
         "react-is": "^18",
-        "react-router-dom": "^6.9.0",
+        "react-router-dom": "^5",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
@@ -28,7 +28,7 @@
         "@neutrinojs/mocha": "^9.3.0",
         "@neutrinojs/react": "^9.3.0",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-        "@xtraplatform/neutrino": "^2.0.0",
+        "@xtraplatform/neutrino": "workspace:*",
         "eslint": "^7",
         "eslint-plugin-babel": "*",
         "mocha": "^8",
