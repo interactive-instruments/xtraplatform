@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import { Box, ThemeContext } from 'grommet';
 
-import { Sidebar } from '../Layout/Sidebar';
+import Sidebar from '../Layout/Sidebar';
 import NavigationHeader from './Header';
 import NavigationMenu from './Menu';
 
 export { default as Page } from './Page';
+export { default as DefaultRoute } from './DefaultRoute';
 
 export const Navigation = ({
     title,
@@ -20,6 +21,7 @@ export const Navigation = ({
     children,
 }) => {
     const theme = useContext(ThemeContext);
+
     const color = theme.normalizeColor(theme.navigation.color, theme.navigation.dark);
     const bgColor = theme.navigation.background;
 
