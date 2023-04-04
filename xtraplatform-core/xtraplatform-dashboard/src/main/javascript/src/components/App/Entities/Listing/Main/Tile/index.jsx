@@ -42,9 +42,8 @@ const getStatusText = (status) => {
     }
 };
 
-export const Tile = ({ title, status, id, setCurrentID }) => {
+export const Tile = ({ title, status, id }) => {
     const history = useHistory();
-    const location = useLocation();
 
     const iconSize = 'medium';
 

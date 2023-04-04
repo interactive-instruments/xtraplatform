@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, ResponsiveContext, Grid, Flex } from 'grommet';
+import { Box, Grid } from 'grommet';
 
-import { TileGrid, Content } from '@xtraplatform/core';
+import { TileGrid } from '@xtraplatform/core';
 import { Tile } from './Tile';
-import { useEntities } from '../../../hooks';
 
-const EntitiesListing = ({}) => {
-    const [currentID, setCurrentID] = useState(null);
-    const entities = useEntities();
-
+const EntitiesListing = ({ entities }) => {
     return (
         <Box overflow={{ vertical: 'auto' }} height={{ min: 'medium' }}>
             <Grid
@@ -26,8 +22,6 @@ const EntitiesListing = ({}) => {
                                 provider.status.charAt(0).toUpperCase() +
                                 provider.status.substring(1).toLowerCase()
                             }
-                            setCurrentID={setCurrentID}
-                            currentID={currentID}
                             id={provider.id}
                             isCompact
                         />

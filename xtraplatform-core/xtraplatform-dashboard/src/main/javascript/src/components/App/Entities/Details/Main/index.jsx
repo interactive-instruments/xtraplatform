@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { useFassets } from 'feature-u';
 
 import { Box, Grid } from 'grommet';
 import { Tile } from '../../Listing/Main/Tile';
-import { TileGrid } from '@xtraplatform/core';
 
 const Main = ({ selectedChecks, healthchecks, currentID }) => {
     return (

@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { useFassets } from 'feature-u';
 
-import { Box } from 'grommet';
 import { Globe } from 'grommet-icons';
-import { Header, TaskProgress, AsyncIcon } from '@xtraplatform/core';
+import { Header } from '@xtraplatform/core';
 
-const ServiceEditHeader = ({ service, status }) => {
+const ServiceEditHeader = ({ service }) => {
     // const ViewActions = useFassets(serviceViewActions());
 
     const token = null;
