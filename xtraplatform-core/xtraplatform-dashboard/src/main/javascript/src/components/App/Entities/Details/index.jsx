@@ -12,7 +12,7 @@ import { useEntities } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import Main from './Main';
 
-const Details = () => {
+const Details = ({ dark }) => {
     const { id: currentID } = useParams();
     const entities = useEntities();
     const [healthchecks, setHealthchecks] = useState({});

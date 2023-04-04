@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { useHistory, useLocation } from 'react-router-dom';
 import { Box, Text } from 'grommet';
 import { Tile as Coretile, StatusIcon } from '@xtraplatform/core';
@@ -44,7 +43,6 @@ const getStatusText = (status) => {
 };
 
 export const Tile = ({ title, status, id, setCurrentID }) => {
-    
     const history = useHistory();
     const location = useLocation();
 
@@ -66,7 +64,7 @@ export const Tile = ({ title, status, id, setCurrentID }) => {
             direction='column'
             basis='auto'
             fill='horizontal'
-            onClick={() => history.push({pathname: `/entities/${id}`})}
+            onClick={() => history.push({ pathname: `/entities/${id}` })}
             selected={false}
             focusIndicator={false}
             background='background-front'

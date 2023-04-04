@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, ResponsiveContext } from 'grommet';
+import { Box, ResponsiveContext, Grid, Flex } from 'grommet';
 
 import { TileGrid, Content } from '@xtraplatform/core';
 import { Tile } from './Tile';
@@ -14,7 +14,7 @@ const EntitiesListing = ({}) => {
     return (
         <ResponsiveContext.Consumer>
             {(size) => (
-                <>
+                <Grid columns='medium' gap='large' pad={{ bottom: 'large' }}>
                     <Box fill='vertical' overflow={{ vertical: 'auto' }}>
                         <Box pad='none' background='content' flex={false}>
                             <TileGrid compact='small'>
@@ -34,7 +34,7 @@ const EntitiesListing = ({}) => {
                             </TileGrid>
                         </Box>
                     </Box>
-                </>
+                </Grid>
             )}
         </ResponsiveContext.Consumer>
     );
