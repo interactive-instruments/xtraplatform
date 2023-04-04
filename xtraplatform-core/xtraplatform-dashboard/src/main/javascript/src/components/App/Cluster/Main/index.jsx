@@ -7,7 +7,7 @@ import { deepMerge } from 'grommet/utils';
 import { TileGrid } from '@xtraplatform/core';
 import services from '../services';
 import healthcheck from '../healthcheck';
-import { Tile } from '../Tile';
+import { Tile } from '../../Entities/Listing/Main/Tile';
 
 const theme = deepMerge(grommet, {
     global: {
@@ -77,10 +77,7 @@ const Details = () => {
                                         <Box pad='none' background='content' flex={false}>
                                             <TileGrid compact='small'>
                                                 <Tile
-                                                    title={
-                                                        check.charAt(0).toUpperCase() +
-                                                        check.slice(1)
-                                                    }
+                                                    title={check}
                                                     status={healthcheck[check]?.healthy}
                                                     key={check}
                                                     isCompact
