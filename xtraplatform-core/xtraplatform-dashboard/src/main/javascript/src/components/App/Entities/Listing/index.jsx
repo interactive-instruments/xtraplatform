@@ -42,11 +42,7 @@ const EntitiesListing = ({ dark, setDark }) => {
                         />
                     </AppBar>
                 }
-                main={
-                    <PageContent style={{ maxHeight: '80vh', overflow: 'auto' }}>
-                        <Main />
-                    </PageContent>
-                }
+                main={<Main />}
             />
         </Page>
     );

@@ -12,31 +12,29 @@ const EntitiesListing = ({}) => {
     const entities = useEntities();
 
     return (
-        <ResponsiveContext.Consumer>
-            {(size) => (
-                <Grid columns='medium' gap='large' pad={{ bottom: 'large' }}>
-                    <Box fill='vertical' overflow={{ vertical: 'auto' }}>
-                        <Box pad='none' background='content' flex={false}>
-                            <TileGrid compact='small'>
-                                {entities.providers.map((provider) => (
-                                    <Tile
-                                        title={provider.id}
-                                        status={
-                                            provider.status.charAt(0).toUpperCase() +
-                                            provider.status.substring(1).toLowerCase()
-                                        }
-                                        setCurrentID={setCurrentID}
-                                        currentID={currentID}
-                                        id={provider.id}
-                                        isCompact={size === 'small'}
-                                    />
-                                ))}
-                            </TileGrid>
-                        </Box>
-                    </Box>
-                </Grid>
-            )}
-        </ResponsiveContext.Consumer>
+        <Box overflow={{ vertical: 'auto' }} height={{ min: 'medium' }}>
+            <Grid
+                columns={{ count: 'fit', size: ['small', 'medium'] }}
+                gap='large'
+                pad={{ bottom: 'small', top: 'small', left: '9%' }}>
+                {entities.providers.map((provider) => (
+                    <TileGrid compact='small'>
+                        <Tile
+                            key={provider.id}
+                            title={provider.id}
+                            status={
+                                provider.status.charAt(0).toUpperCase() +
+                                provider.status.substring(1).toLowerCase()
+                            }
+                            setCurrentID={setCurrentID}
+                            currentID={currentID}
+                            id={provider.id}
+                            isCompact
+                        />
+                    </TileGrid>
+                ))}
+            </Grid>
+        </Box>
     );
 };
 

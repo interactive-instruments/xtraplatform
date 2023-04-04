@@ -47,28 +47,24 @@ const Details = ({ dark, setDark, theme }) => {
                     }}
                 />
             </AppBar>
-            <PageContent>
-                <Grid columns='medium' gap='large' pad={{ bottom: 'large' }}>
-                    <Box fill='vertical' overflow={{ vertical: 'auto' }}>
-                        <Box pad='none' background='content' flex={false}>
-                            {unsortedChecks.map((check) => (
-                                <Box fill='vertical' overflow={{ vertical: 'auto' }}>
-                                    <Box pad='none' background='content' flex={false}>
-                                        <TileGrid compact='small'>
-                                            <Tile
-                                                title={check}
-                                                status={healthcheck[check]?.healthy}
-                                                key={check}
-                                                isCompact
-                                            />
-                                        </TileGrid>
-                                    </Box>
-                                </Box>
-                            ))}
-                        </Box>
-                    </Box>
+
+            <Box overflow={{ vertical: 'auto' }} height={{ min: 'medium' }}>
+                <Grid
+                    columns={{ count: 'fit', size: ['small', 'medium'] }}
+                    gap='large'
+                    pad={{ bottom: 'small', top: 'small', left: '9%' }}>
+                    {unsortedChecks.map((check) => (
+                        <TileGrid compact='small'>
+                            <Tile
+                                title={check}
+                                status={healthcheck[check]?.healthy}
+                                key={check}
+                                isCompact
+                            />
+                        </TileGrid>
+                    ))}
                 </Grid>
-            </PageContent>
+            </Box>
         </Page>
     );
 };
