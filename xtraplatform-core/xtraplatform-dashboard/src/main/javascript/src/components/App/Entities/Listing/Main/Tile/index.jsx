@@ -63,7 +63,7 @@ export const Tile = ({ title, status, id }) => {
             direction='column'
             basis='auto'
             fill='horizontal'
-            onClick={() => history.push({ pathname: `/entities/${id}` })}
+            onClick={() => id && history.push({ pathname: `/entities/${id}` })}
             selected={false}
             focusIndicator={false}
             background='background-front'

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Page } from 'grommet';
 
-import { Content } from '@xtraplatform/core';
+// import { Content } from '@xtraplatform/core';
+import Content from './Content';
 import Main from './Main';
 import ListingHeader from './Header';
 import { useEntities } from '../../hooks';

@@ -4,6 +4,7 @@ import { Page } from 'grommet';
 import ClusterMain from './Main';
 import { useChecks, useEntities } from '../hooks';
 import ClusterHeader from './Header';
+import Content from '../Entities/Listing/Content';
 
 const Details = ({ dark, setDark }) => {
     const entities = useEntities();
@@ -19,8 +20,10 @@ const Details = ({ dark, setDark }) => {
 
     return (
         <Page>
-            <ClusterHeader dark={dark} setDark={setDark} />
-            <ClusterMain unsortedChecks={unsortedChecks} healthcheck={healthchecks} />
+            <Content
+                header={<ClusterHeader dark={dark} setDark={setDark} />}
+                main={<ClusterMain unsortedChecks={unsortedChecks} healthcheck={healthchecks} />}
+            />
         </Page>
     );
 };

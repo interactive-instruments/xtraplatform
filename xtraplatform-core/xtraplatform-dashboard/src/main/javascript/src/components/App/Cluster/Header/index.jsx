@@ -7,7 +7,7 @@ const AppBar = (props) => (
     <Header
         background='brand'
         pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-        style={{ height: '95px' }}
+        style={{ width: '100%' }}
         elevation='small'
         {...props}
     />
@@ -16,7 +16,7 @@ const AppBar = (props) => (
 const ClusterHeader = ({ dark, setDark }) => {
     return (
         <AppBar>
-            <Text size='large'>Other Checks</Text>
+            <Text size='large'>Cluster</Text>
             <Button
                 a11yTitle={dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 icon={dark ? <Moon /> : <Sun />}
