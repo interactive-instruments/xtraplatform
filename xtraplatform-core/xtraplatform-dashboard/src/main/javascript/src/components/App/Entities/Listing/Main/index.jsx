@@ -18,6 +18,7 @@ const EntitiesListing = ({ entities }) => {
                         <Tile
                             key={provider.id}
                             title={provider.id}
+                            label='Provider'
                             status={
                                 provider.status.charAt(0).toUpperCase() +
                                 provider.status.substring(1).toLowerCase()

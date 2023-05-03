@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 
 import { Content } from '@xtraplatform/core';
 import ServiceEditHeader from './Header';
-import { useChecks } from '../../hooks';
+import { useChecks, useEntities } from '../../hooks';
 import { useParams } from 'react-router-dom';
-import Main from './Main';
+import TabsOption from './TabsOptions';
 
 const Details = () => {
     const { id: currentID } = useParams();
+    const entities = useEntities();
     const healthchecks = useChecks();
     const selectedChecks = Object.keys(healthchecks).filter((key) => key.includes(currentID));
 
     const service = currentID ? currentID : {};
+    const provider = entities.providers.find((provider) => provider.id === currentID);
+    const status = provider
+        ? provider.status.charAt(0).toUpperCase() + provider.status.substring(1).toLowerCase()
+        : 'DONTKNOW';
 
     return (
         <Content
-            header={<ServiceEditHeader service={service} />}
+            header={<ServiceEditHeader service={service} status={status} />}
             main={
-                <Main
+                <TabsOption
                     currentID={currentID}
                     healthchecks={healthchecks}
                     selectedChecks={selectedChecks}

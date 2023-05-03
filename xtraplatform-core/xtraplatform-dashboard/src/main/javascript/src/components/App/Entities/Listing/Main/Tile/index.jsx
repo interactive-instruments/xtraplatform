@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useHistory, useLocation } from 'react-router-dom';
-import { Box, Text } from 'grommet';
+import { Box, Text, Heading } from 'grommet';
 import { Tile as Coretile, StatusIcon } from '@xtraplatform/core';
 
 const getStatusIconType = (status) => {
@@ -42,7 +42,7 @@ const getStatusText = (status) => {
     }
 };
 
-export const Tile = ({ title, status, id }) => {
+export const Tile = ({ title, status, id, label }) => {
     const history = useHistory();
 
     const iconSize = 'medium';
@@ -86,6 +86,18 @@ export const Tile = ({ title, status, id }) => {
                     </Text>
                     <span title={statusText}>{statusIcon}</span>
                 </Box>
+                {label ? (
+                    <Box
+                        margin={{ top: 'top' }}
+                        direction='row'
+                        align='center'
+                        justify='between'
+                        textSize='small'>
+                        <Heading level='4' truncate margin='none' title={label}>
+                            {label}
+                        </Heading>
+                    </Box>
+                ) : null}
             </Box>
         </Coretile>
     );

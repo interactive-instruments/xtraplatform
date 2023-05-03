@@ -7,25 +7,8 @@ import { Page, DefaultRoute, createTheme } from '@xtraplatform/core';
 import EntitiesListing from './Entities/Listing';
 import EntitiesDetails from './Entities/Details';
 import UnsortedChecks from './Cluster';
-import { deepMerge } from 'grommet/utils';
-import { grommet } from 'grommet';
 
-const theme1 = deepMerge(grommet, {
-    global: {
-        colors: {
-            brand: '#228BE6',
-        },
-        font: {
-            family: 'Roboto',
-            size: '14px',
-            height: '20px',
-        },
-    },
-    normalizeColor: (color) => {
-        return color;
-    },
-});
-const theme = createTheme(theme1);
+const theme = createTheme({});
 
 const routes = [
     { menuLabel: 'Cluster', path: '/cluster', content: <UnsortedChecks /> },
