@@ -1,6 +1,4 @@
 import React from 'react';
-import { useEntities } from '../../../hooks';
-import getStatusIcon from '../../../../Icon';
 
 import { TileGrid } from '@xtraplatform/core';
 import { Tile } from '../Main/Tile';
@@ -21,57 +19,57 @@ import {
     Data,
 } from 'grommet';
 
-const Filter = () => {
-    const entities = useEntities();
-    const DATA = entities.providers.map((provider) => {
-        return {
-            title: provider.id,
-            label: 'Provider',
-            status:
-                provider.status.charAt(0).toUpperCase() +
-                provider.status.substring(1).toLowerCase(),
-            id: provider.id,
-        };
-    });
+const Filter = ({ DATA }) => {
+    let gridColumns;
+    if (DATA.length <= 3) {
+        gridColumns = 'center';
+    } else if (DATA.length <= 6) {
+        gridColumns = 'two';
+    } else {
+        gridColumns = 'three';
+    }
+
+    let tileGridColumns;
+    if (DATA.length <= 3) {
+        tileGridColumns = ['large'];
+    } else if (DATA.length <= 6) {
+        tileGridColumns = ['medium', 'medium'];
+    } else {
+        tileGridColumns = ['small', 'small', 'small'];
+    }
 
     return (
-        <Grid
-            flex={false}
-            pad='large'
-            columns={[['small', 'xlarge']]}
-            justifyContent='center'
-            gap='large'>
+        <Box gap='large' pad='medium'>
             <Data data={DATA}>
                 <Toolbar>
                     <DataSearch />
                     <DataFilters drop>
-                        <DataFilter property='location' />
+                        <DataFilter property='label' options={['Provider', 'Services']} />
                     </DataFilters>
                 </Toolbar>
                 <DataSummary />
-                <Box overflow={{ vertical: 'auto' }} height={{ min: 'medium' }}>
-                    <Grid
-                        columns={{ count: 'fit', size: ['small', 'medium'] }}
-                        gap='large'
-                        pad={{ bottom: 'small', top: 'small', left: '9%' }}>
-                        <Cards>
-                            {(item) => (
-                                <TileGrid compact='small'>
-                                    <Tile
-                                        key={item.title}
-                                        title={item.title}
-                                        label='Provider'
-                                        status={item.status}
-                                        id={item.title}
-                                        isCompact
-                                    />
-                                </TileGrid>
-                            )}
-                        </Cards>
-                    </Grid>
-                </Box>
+                <Grid
+                    columns={{ count: gridColumns, size: tileGridColumns }}
+                    gap='large'
+                    pad='small'
+                    alignSelf='center'>
+                    <Cards alignSelf='center' size={tileGridColumns}>
+                        {(item) => (
+                            <TileGrid compact='small'>
+                                <Tile
+                                    key={item.title}
+                                    title={item.title}
+                                    label='Provider'
+                                    status={item.status}
+                                    id={item.title}
+                                    isCompact
+                                />
+                            </TileGrid>
+                        )}
+                    </Cards>
+                </Grid>
             </Data>
-        </Grid>
+        </Box>
     );
 };
 Filter.storyName = 'Cards';

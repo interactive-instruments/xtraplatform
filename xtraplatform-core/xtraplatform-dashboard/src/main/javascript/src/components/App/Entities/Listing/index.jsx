@@ -25,7 +25,7 @@ const EntitiesListing = ({ dark, setDark }) => {
     return (
         <Page>
             <Content
-                header={<ListingHeader dark={dark} setDark={setDark} DATA={DATA} />}
+                header={<ListingHeader dark={dark} setDark={setDark} />}
                 main={<Filter DATA={DATA} />}
             />
         </Page>
