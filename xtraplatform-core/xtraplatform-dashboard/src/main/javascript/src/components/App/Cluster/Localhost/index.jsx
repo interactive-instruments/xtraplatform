@@ -4,6 +4,7 @@ import { Content } from '@xtraplatform/core';
 import LocalhostHeader from './Header';
 import { useChecks, useEntities } from '../../hooks';
 import TabsOption from './TabsOptions';
+import { Page } from 'grommet';
 
 const LocalhostTabs = () => {
     const entities = useEntities();
@@ -19,10 +20,12 @@ const LocalhostTabs = () => {
     const status = unsortedChecks.every((check) => healthcheck[check]?.healthy);
 
     return (
-        <Content
-            header={<LocalhostHeader status={status} />}
-            main={<TabsOption healthcheck={healthcheck} unsortedChecks={unsortedChecks} />}
-        />
+        <Page>
+            <Content
+                header={<LocalhostHeader status={status} />}
+                main={<TabsOption healthcheck={healthcheck} unsortedChecks={unsortedChecks} />}
+            />
+        </Page>
     );
 };
 
