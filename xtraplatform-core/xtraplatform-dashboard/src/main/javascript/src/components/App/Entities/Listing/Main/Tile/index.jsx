@@ -63,7 +63,14 @@ export const Tile = ({ title, status, id, label }) => {
             direction='column'
             basis='auto'
             fill='horizontal'
-            onClick={() => id && history.push({ pathname: `/entities/${id}` })}
+            onClick={() => {
+                if (id) {
+                    const newPathname = history.location.pathname.includes('cluster')
+                        ? `/cluster/${id}`
+                        : `/entities/${id}`;
+                    history.push({ pathname: newPathname });
+                }
+            }}
             selected={false}
             focusIndicator={false}
             background='background-front'

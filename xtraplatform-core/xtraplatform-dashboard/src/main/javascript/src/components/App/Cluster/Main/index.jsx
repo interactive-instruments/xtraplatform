@@ -6,22 +6,23 @@ import { TileGrid } from '@xtraplatform/core';
 import { Tile } from '../../Entities/Listing/Main/Tile';
 
 const ClusterMain = ({ unsortedChecks, healthcheck }) => {
+    const status = unsortedChecks.every((check) => healthcheck[check]?.healthy);
+
     return (
         <Box overflow={{ vertical: 'auto' }} height={{ min: 'medium' }}>
             <Grid
                 columns={{ count: 'fit', size: ['small', 'medium'] }}
                 gap='large'
                 pad={{ bottom: 'small', top: 'small', left: '9%' }}>
-                {unsortedChecks.map((check) => (
-                    <TileGrid compact='small'>
-                        <Tile
-                            title={check}
-                            status={healthcheck[check]?.healthy}
-                            key={check}
-                            isCompact
-                        />
-                    </TileGrid>
-                ))}
+                <TileGrid compact='small'>
+                    <Tile
+                        title={'Localhost'}
+                        status={status}
+                        key={'Localhost'}
+                        id={'localhost'}
+                        isCompact
+                    />
+                </TileGrid>
             </Grid>
         </Box>
     );

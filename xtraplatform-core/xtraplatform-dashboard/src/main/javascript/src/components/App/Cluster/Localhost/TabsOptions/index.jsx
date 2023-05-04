@@ -4,7 +4,7 @@ import Main from '../Main';
 import Action from '../../../Action';
 import Configuration from '../../../Configuration';
 
-const TabsOption = ({ currentID, healthchecks, selectedChecks }) => {
+const TabsOption = ({ healthcheck, unsortedChecks }) => {
     const tabs = [
         { id: 'tab1', label: 'Health', component: Main },
         { id: 'tab2', label: 'Action', component: Action },
@@ -16,9 +16,8 @@ const TabsOption = ({ currentID, healthchecks, selectedChecks }) => {
             <Tabs
                 tabs={tabs}
                 tabProps={{
-                    currentID,
-                    healthchecks,
-                    selectedChecks,
+                    healthcheck,
+                    unsortedChecks,
                 }}
             />
         </>

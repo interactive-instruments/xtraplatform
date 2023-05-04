@@ -7,11 +7,13 @@ import { Page, DefaultRoute, createTheme } from '@xtraplatform/core';
 import EntitiesListing from './Entities/Listing';
 import EntitiesDetails from './Entities/Details';
 import UnsortedChecks from './Cluster';
+import LocalhostTabs from './Cluster/Localhost';
 
 const theme = createTheme({});
 
 const routes = [
     { menuLabel: 'Cluster', path: '/cluster', content: <UnsortedChecks /> },
+    { path: '/cluster/:id', content: <LocalhostTabs /> },
     { menuLabel: 'Entities', path: '/entities', default: true, content: <EntitiesListing /> },
     { path: '/entities/:id', content: <EntitiesDetails /> },
 ];
