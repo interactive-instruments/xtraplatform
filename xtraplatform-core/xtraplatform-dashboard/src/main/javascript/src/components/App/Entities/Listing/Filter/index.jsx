@@ -1,38 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { TileGrid } from '@xtraplatform/core';
 import { Tile } from '../Main/Tile';
 
 import {
     Box,
-    Card,
-    CardBody,
-    CardFooter,
     Cards,
     DataFilters,
     DataFilter,
     DataSearch,
     DataSummary,
     Grid,
-    Heading,
     Toolbar,
     Data,
 } from 'grommet';
 
 const Filter = ({ DATA }) => {
+    const [selectedFilter, setSelectedFilter] = useState('');
+
+    let filteredData = DATA;
+    if (selectedFilter) {
+        filteredData = DATA.filter((item) => item.label === selectedFilter);
+    }
+
     let gridColumns;
-    if (DATA.length <= 3) {
+    if (filteredData.length <= 3) {
         gridColumns = 'center';
-    } else if (DATA.length <= 6) {
+    } else if (filteredData.length <= 6) {
         gridColumns = 'two';
     } else {
         gridColumns = 'three';
     }
 
     let tileGridColumns;
-    if (DATA.length <= 3) {
+    if (filteredData.length <= 3) {
         tileGridColumns = ['large'];
-    } else if (DATA.length <= 6) {
+    } else if (filteredData.length <= 6) {
         tileGridColumns = ['medium', 'medium'];
     } else {
         tileGridColumns = ['small', 'small', 'small'];
@@ -40,11 +43,16 @@ const Filter = ({ DATA }) => {
 
     return (
         <Box gap='large' pad='medium'>
-            <Data data={DATA}>
+            <Data data={filteredData}>
                 <Toolbar>
                     <DataSearch />
                     <DataFilters drop>
-                        <DataFilter property='label' options={['Provider', 'Services']} />
+                        <DataFilter
+                            property='label'
+                            options={['Provider', 'Services']}
+                            selected={selectedFilter}
+                            onSelect={(event) => setSelectedFilter(event.option)}
+                        />
                     </DataFilters>
                 </Toolbar>
                 <DataSummary />

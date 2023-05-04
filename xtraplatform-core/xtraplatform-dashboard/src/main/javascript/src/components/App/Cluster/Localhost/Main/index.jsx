@@ -7,7 +7,7 @@ const Localhost = ({ healthcheck, unsortedChecks }) => {
     return (
         <Box overflow={{ vertical: 'auto' }} height={{ min: 'medium' }}>
             <Grid
-                columns={{ count: 'fit', size: ['small', 'medium'] }}
+                columns={{ count: 'fit', size: ['large'] }}
                 gap='large'
                 pad={{ bottom: 'medium', top: 'medium', left: 'medium', right: 'medium' }}>
                 {unsortedChecks && unsortedChecks.length > 0 ? (
