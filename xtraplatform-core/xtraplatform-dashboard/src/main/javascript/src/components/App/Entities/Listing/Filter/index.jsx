@@ -67,7 +67,7 @@ const Filter = ({ DATA }) => {
                                 <Tile
                                     key={item.title}
                                     title={item.title}
-                                    label='Provider'
+                                    label={item.label}
                                     status={item.status}
                                     id={item.title}
                                     isCompact
