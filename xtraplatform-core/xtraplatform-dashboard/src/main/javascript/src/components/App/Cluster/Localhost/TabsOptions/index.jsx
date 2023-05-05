@@ -10,6 +10,7 @@ const TabsOption = ({ healthcheck, unsortedChecks }) => {
         { id: 'tab2', label: 'Action', component: Action },
         { id: 'tab3', label: 'Configuration', component: Configuration },
     ];
+    const currentID = 'localhost';
 
     return (
         <>
@@ -18,6 +19,7 @@ const TabsOption = ({ healthcheck, unsortedChecks }) => {
                 tabProps={{
                     healthcheck,
                     unsortedChecks,
+                    currentID,
                 }}
             />
         </>

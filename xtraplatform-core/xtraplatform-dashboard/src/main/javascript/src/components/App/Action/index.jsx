@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Button } from 'grommet';
 
-const Action = () => {
+const Action = ({ currentID }) => {
     const onClick = () => {
-        fetch('/tasks/reload-entities?ids=cshapes&types=services', {
+        fetch(`/tasks/reload-entities?ids=${currentID}&types=services`, {
             method: 'POST',
         })
             .then((response) => response.json())
