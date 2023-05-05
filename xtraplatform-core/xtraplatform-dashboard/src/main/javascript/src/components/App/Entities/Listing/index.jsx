@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Page } from 'grommet';
 
 // import { Content } from '@xtraplatform/core';
 import Content from './Content';
-import Main from './Main';
 import ListingHeader from './Header';
 import { useEntities } from '../../hooks';
 import Filter from './Filter';
@@ -14,7 +13,7 @@ const EntitiesListing = ({ dark, setDark }) => {
     const DATA = entities.providers.map((provider) => {
         return {
             title: provider.id,
-            label: 'Provider',
+            label: 'provider',
             status:
                 provider.status.charAt(0).toUpperCase() +
                 provider.status.substring(1).toLowerCase(),

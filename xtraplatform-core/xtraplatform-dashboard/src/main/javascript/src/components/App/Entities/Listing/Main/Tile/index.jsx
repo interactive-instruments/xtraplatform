@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Box, Text, Heading } from 'grommet';
 import { Tile as Coretile, StatusIcon } from '@xtraplatform/core';
 
@@ -80,6 +80,19 @@ export const Tile = ({ title, status, id, label }) => {
             pad='none'>
             {/* Card */}
             <Box fill='horizontal' textSize='small' pad='small'>
+                {label ? (
+                    <Box
+                        margin={{ top: 'top' }}
+                        direction='row'
+                        align='center'
+                        justify='between'
+                        textSize='small'>
+                        <Heading level='4' truncate margin='none' title={label}>
+                            {label}
+                        </Heading>
+                    </Box>
+                ) : null}
+
                 <Box direction='row' justify='between' align='center' fill='horizontal'>
                     <Text
                         size='small'
@@ -93,18 +106,6 @@ export const Tile = ({ title, status, id, label }) => {
                     </Text>
                     <span title={statusText}>{statusIcon}</span>
                 </Box>
-                {label ? (
-                    <Box
-                        margin={{ top: 'top' }}
-                        direction='row'
-                        align='center'
-                        justify='between'
-                        textSize='small'>
-                        <Heading level='4' truncate margin='none' title={label}>
-                            {label}
-                        </Heading>
-                    </Box>
-                ) : null}
             </Box>
         </Coretile>
     );

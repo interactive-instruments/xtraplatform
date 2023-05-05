@@ -23,22 +23,12 @@ const Filter = ({ DATA }) => {
         filteredData = DATA.filter((item) => item.label === selectedFilter);
     }
 
-    let gridColumns;
-    if (filteredData.length <= 3) {
-        gridColumns = 'center';
-    } else if (filteredData.length <= 6) {
-        gridColumns = 'two';
-    } else {
-        gridColumns = 'three';
-    }
-
     let tileGridColumns;
     if (filteredData.length <= 3) {
-        tileGridColumns = ['large'];
-    } else if (filteredData.length <= 6) {
-        tileGridColumns = ['medium', 'medium'];
+        tileGridColumns = ['flex'];
     } else {
-        tileGridColumns = ['small', 'small', 'small'];
+        const numColumns = Math.ceil(filteredData.length / Math.ceil(filteredData.length / 3));
+        tileGridColumns = new Array(numColumns).fill('flex');
     }
 
     return (
@@ -56,26 +46,20 @@ const Filter = ({ DATA }) => {
                     </DataFilters>
                 </Toolbar>
                 <DataSummary />
-                <Grid
-                    columns={{ count: gridColumns, size: tileGridColumns }}
-                    gap='large'
-                    pad='small'
-                    alignSelf='center'>
-                    <Cards alignSelf='center' size={tileGridColumns}>
-                        {(item) => (
-                            <TileGrid compact='small'>
-                                <Tile
-                                    key={item.title}
-                                    title={item.title}
-                                    label={item.label}
-                                    status={item.status}
-                                    id={item.title}
-                                    isCompact
-                                />
-                            </TileGrid>
-                        )}
-                    </Cards>
-                </Grid>
+                <Cards size={tileGridColumns}>
+                    {(item) => (
+                        <TileGrid compact='small'>
+                            <Tile
+                                key={item.title}
+                                title={item.title}
+                                label={item.label}
+                                status={item.status}
+                                id={item.title}
+                                isCompact
+                            />
+                        </TileGrid>
+                    )}
+                </Cards>
             </Data>
         </Box>
     );
