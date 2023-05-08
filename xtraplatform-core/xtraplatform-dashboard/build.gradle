@@ -24,9 +24,9 @@ node {
 
 yarn_install {
     inputs.file("src/main/javascript/package.json")
-    inputs.file("src/main/javascript/yarn.lock")
-    outputs.dir("src/main/javascript/node_modules")
-    outputs.dir("src/main/javascript/.yarn/cache")
+    inputs.file("../../yarn.lock")
+    outputs.dir("../../node_modules")
+    outputs.dir("../../.yarn/cache")
     execOverrides {
         it.workingDir = 'src/main/javascript'
     }
@@ -35,7 +35,7 @@ yarn_install {
 task yarn_build(type: YarnTask) {
     dependsOn yarn_install
     inputs.file("src/main/javascript/package.json")
-    inputs.file("src/main/javascript/yarn.lock")
+    inputs.file("../../yarn.lock")
     inputs.dir("src/main/javascript/src")
     outputs.dir(generatedResourcesDir)
     execOverrides {
