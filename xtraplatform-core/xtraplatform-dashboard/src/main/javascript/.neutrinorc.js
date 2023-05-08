@@ -23,7 +23,7 @@ module.exports = {
     }),
     (neutrino) => {
       neutrino.config.devServer.proxy([{
-        context: ['/entities', '/healthcheck'],
+        context: ['/entities', '/healthcheck', '/tasks'],
         target: 'http://localhost:7081',
       }]);
     }
