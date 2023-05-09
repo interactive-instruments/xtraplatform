@@ -16,7 +16,6 @@ const Action = ({ currentID }) => {
     };
     return (
         <Box overflow={{ vertical: 'auto' }} height={{ min: 'medium' }}>
-            <Button primary label='Mach' alignSelf='center' margin='large' />
             <Button
                 primary
                 label='Reload Configuration'

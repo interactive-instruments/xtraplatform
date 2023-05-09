@@ -16,7 +16,7 @@ const Details = () => {
     const selectedChecks = Object.keys(healthchecks).filter((key) => key.includes(currentEntityId));
 
     const service = currentEntityId ? currentEntityId : {};
-    const provider = entities[currentEntityKey].find((entity) => entity.id === currentEntityId);
+    const provider = entities[currentEntityKey]?.find((entity) => entity.id === currentEntityId);
 
     const status = provider
         ? provider.status.charAt(0).toUpperCase() + provider.status.substring(1).toLowerCase()
