@@ -23,6 +23,13 @@ const Filter = ({ DATA }) => {
         filteredData = DATA.filter((item) => item.label === selectedFilter);
     }
 
+    const labels = [];
+    DATA.filter((item) => {
+        if (!labels.includes(item.label)) {
+            labels.push(item.label);
+        }
+    });
+
     let tileGridColumns;
     if (filteredData.length <= 3) {
         tileGridColumns = ['flex'];
@@ -39,13 +46,13 @@ const Filter = ({ DATA }) => {
                     <DataFilters drop>
                         <DataFilter
                             property='label'
-                            options={['Provider', 'Services']}
+                            options={labels}
                             selected={selectedFilter}
                             onSelect={(event) => setSelectedFilter(event.option)}
                         />
                     </DataFilters>
                 </Toolbar>
-                <DataSummary />
+                <DataSummary style={{ marginBottom: '25px' }} />
                 <Cards size={tileGridColumns}>
                     {(item) => (
                         <TileGrid compact='small'>

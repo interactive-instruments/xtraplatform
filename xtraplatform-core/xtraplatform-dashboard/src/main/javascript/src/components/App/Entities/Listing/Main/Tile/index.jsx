@@ -80,32 +80,32 @@ export const Tile = ({ title, status, id, label }) => {
             pad='none'>
             {/* Card */}
             <Box fill='horizontal' textSize='small' pad='small'>
-                {label ? (
-                    <Box
-                        margin={{ top: 'top' }}
-                        direction='row'
-                        align='center'
-                        justify='between'
-                        textSize='small'>
-                        <Heading level='4' truncate margin='none' title={label}>
-                            {label}
-                        </Heading>
-                    </Box>
-                ) : null}
-
-                <Box direction='row' justify='between' align='center' fill='horizontal'>
-                    <Text
-                        size='small'
-                        weight='bold'
-                        color='dark-4'
-                        truncate
-                        title={title}
-                        margin={{ right: 'xsmall' }}
-                        style={{ fontFamily: '"Roboto Mono", monospace' }}>
+                <Box
+                    margin={{ top: 'top' }}
+                    direction='row'
+                    align='center'
+                    justify='between'
+                    textSize='small'>
+                    <Heading level='4' truncate margin='none' title={label}>
                         {title}
-                    </Text>
+                    </Heading>
                     <span title={statusText}>{statusIcon}</span>
                 </Box>
+
+                {label ? (
+                    <Box direction='row' justify='between' align='center' fill='horizontal'>
+                        <Text
+                            size='small'
+                            weight='bold'
+                            color='dark-4'
+                            truncate
+                            title={label}
+                            margin={{ right: 'xsmall' }}
+                            style={{ fontFamily: '"Roboto Mono", monospace' }}>
+                            {label}
+                        </Text>
+                    </Box>
+                ) : null}
             </Box>
         </Coretile>
     );

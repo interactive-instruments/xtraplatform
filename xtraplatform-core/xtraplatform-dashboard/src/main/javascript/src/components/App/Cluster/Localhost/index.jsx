@@ -9,14 +9,16 @@ import { Page } from 'grommet';
 const LocalhostTabs = () => {
     const entities = useEntities();
     const healthcheck = useChecks();
-    const providers = entities.providers.map((provider) => {
-        return provider.id;
+    const providers = Object.values(entities)
+        .filter(Array.isArray)
+        .map((array) => array.map((item) => item.id))
+        .flat();
+
+    const unsortedChecks = Object.keys(healthcheck).filter((key) => {
+        const keyParts = key.split('.');
+        return keyParts.every((part) => !providers.includes(part));
     });
-    const unsortedChecks = Object.keys(healthcheck)
-        .filter((key) => {
-            return !providers.some((provider) => key.includes(provider));
-        })
-        .map((key) => key.substring(0, 10));
+
     const status = unsortedChecks.every((check) => healthcheck[check]?.healthy);
 
     return (

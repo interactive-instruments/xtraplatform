@@ -10,16 +10,23 @@ import Filter from './Filter';
 
 const EntitiesListing = ({ dark, setDark }) => {
     const entities = useEntities();
-    const DATA = entities.providers.map((provider) => {
-        return {
-            title: provider.id,
-            label: 'provider',
-            status:
-                provider.status.charAt(0).toUpperCase() +
-                provider.status.substring(1).toLowerCase(),
-            id: provider.id,
-        };
-    });
+    const DATA = [];
+
+    for (const key in entities) {
+        if (entities.hasOwnProperty(key)) {
+            const array = entities[key];
+            DATA.push(
+                ...array.map((item) => ({
+                    title: item.id,
+                    label: key,
+                    status:
+                        item.status.charAt(0).toUpperCase() +
+                        item.status.substring(1).toLowerCase(),
+                    id: item.id,
+                }))
+            );
+        }
+    }
 
     return (
         <Page>
