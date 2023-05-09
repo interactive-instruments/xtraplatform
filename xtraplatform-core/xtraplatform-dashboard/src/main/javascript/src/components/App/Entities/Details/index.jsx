@@ -9,8 +9,8 @@ import TabsOption from './TabsOptions';
 
 const Details = () => {
     const { id: currentID } = useParams();
-    const currentEntityId = currentID.split('-')[0];
-    const currentEntityKey = currentID.split('-')[1];
+    const currentEntityId = currentID.split('-').slice(0, -1).join('-');
+    const currentEntityKey = currentID.substring(currentID.lastIndexOf('-') + 1);
     const entities = useEntities();
     const healthchecks = useChecks();
     const selectedChecks = Object.keys(healthchecks).filter((key) => key.includes(currentEntityId));
