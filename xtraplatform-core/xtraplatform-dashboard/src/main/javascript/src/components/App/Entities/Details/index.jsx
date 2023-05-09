@@ -9,14 +9,14 @@ import TabsOption from './TabsOptions';
 
 const Details = () => {
     const { id: currentID } = useParams();
+    const currentEntityId = currentID.split('-')[0];
+    const currentEntityKey = currentID.split('-')[1];
     const entities = useEntities();
     const healthchecks = useChecks();
-    const selectedChecks = Object.keys(healthchecks).filter((key) => key.includes(currentID));
+    const selectedChecks = Object.keys(healthchecks).filter((key) => key.includes(currentEntityId));
 
-    const service = currentID ? currentID : {};
-
-    const allEntities = Object.values(entities).flat();
-    const provider = allEntities.find((entity) => entity.id === currentID);
+    const service = currentEntityId ? currentEntityId : {};
+    const provider = entities[currentEntityKey].find((entity) => entity.id === currentEntityId);
 
     const status = provider
         ? provider.status.charAt(0).toUpperCase() + provider.status.substring(1).toLowerCase()
@@ -27,7 +27,7 @@ const Details = () => {
             header={<ServiceEditHeader service={service} status={status} />}
             main={
                 <TabsOption
-                    currentID={currentID}
+                    currentID={currentEntityId}
                     healthchecks={healthchecks}
                     selectedChecks={selectedChecks}
                 />

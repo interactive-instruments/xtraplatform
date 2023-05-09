@@ -61,7 +61,7 @@ const Filter = ({ DATA }) => {
                                 title={item.title}
                                 label={item.label}
                                 status={item.status}
-                                id={item.title}
+                                id={item.title + '-' + item.label}
                                 isCompact
                             />
                         </TileGrid>
